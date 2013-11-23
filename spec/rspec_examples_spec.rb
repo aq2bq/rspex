@@ -22,4 +22,10 @@ describe Example do
       it { expect(@example.all).to eq "require 'spec_helper'\nrequire 'capybara/rspec'\n\nCapybara.app = TestApp\n\ndescribe 'capybara/rspec', :type => :request do\n  it \"should include Capybara in rspec\" do\n    visit('/foo')\n    page.body.should include('Another World')\n  end\n\n  context \"resetting session\" do\n    it \"sets a cookie in one example...\" do\n      visit('/set_cookie')\n      page.body.should include('Cookie set to test_cookie')\n    end\n\n    it \"...then it is not availbable in the next\" do\n      visit('/get_cookie')\n      page.body.should_not include('test_cookie')\n    end\n  end\n\n  context \"setting the current driver\" do\n    it \"sets the current driver in one example...\" do\n      Capybara.current_driver = :selenium\n    end\n\n    it \"...then it has returned to the default in the next example\" do\n      Capybara.current_driver.should == :rack_test\n    end\n  end\n\n  it \"switches to the javascript driver when giving it as metadata\", :js => true do\n    Capybara.current_driver.should == Capybara.javascript_driver\n  end\n\n  it \"switches to the given driver when giving it as metadata\", :driver => :culerity do\n    Capybara.current_driver.should == :culerity\n  end\nend\n\ndescribe 'capybara/rspec', :type => :other do\n  it \"should not include Capybara\" do\n    expect { visit('/') }.to raise_error(NoMethodError)\n  end\nend\n\nfeature \"Feature DSL\" do\n  scenario \"is pulled in\" do\n    visit('/foo')\n    page.body.should include('Another World')\n  end\nend\n" }
     end
   end
+
+  describe '#describes' do
+    context "when valid path" do
+      it { expect(@example.describes.first).to eq "describe 'capybara/rspec', :type => :request do" }
+    end
+  end
 end

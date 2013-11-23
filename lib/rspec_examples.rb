@@ -14,18 +14,19 @@ end
 
 
 class Example
-  attr_reader :all
+  attr_reader :all, :describes
 
   def initialize path
     @path = path
     @all = open(path).read
+    @describes = []
+    File.foreach(path) do |line|
+      @describes << line.chomp if line =~ /.*describe.*do$/ 
+    end
   end
 
   def name
     @path.match(/^.*gems\/(.*)\/spec\//)[1]
-  end
-
-  def describes
   end
 
   def contexts
