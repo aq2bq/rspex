@@ -1,3 +1,5 @@
+require 'pry-byebug'
+
 class RSpecExamples
   SPEC_PATH = "#{Gem.path}/gems/*/spec/*_spec.rb"
 
@@ -20,7 +22,7 @@ class Example
   end
 
   def name
-    'awesome_print-1.2.0'
+    @path.match(/^.*gems\/(.*)\/spec\//)[1]
   end
 
   def describes
