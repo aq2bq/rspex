@@ -1,7 +1,20 @@
 require 'rspec_examples'
 
 describe RSpecExamples do
+  before do
+    @rspec_examples = RSpecExamples.new
+  end
+  let(:word) { 'valid' }
+  let(:type) { 'context' }
+
   describe '#search' do
+    before do
+      @results = @rspec_examples.search(word, type)
+    end
+    
+    context "when valid arguments" do
+      it { expect(@results.first.name).to eq "capybara-webkit-1.0.0" }
+    end
   end
 end
 

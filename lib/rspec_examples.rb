@@ -4,12 +4,12 @@ class RSpecExamples
   SPEC_PATH = "#{Gem.path[0]}/gems/*/spec/*_spec.rb"
 
   def initialize
-    @specs = Dir.glob(SPEC_PATH).tap{|path| Example.new(path)}
+    @examples = Dir.glob(SPEC_PATH).map{|path| Example.new(path)}
   end
 
-  def search str
+  def search word, type
+    @examples.select{|example| example.match? word, type }
   end
-
 end
 
 
@@ -31,5 +31,11 @@ class Example
 
   def name
     @path.match(/^.*gems\/(.*)\/spec\//)[1]
+  end
+
+  def match? word, type
+    examples = self.instance_variable_get("@#{type}s")
+    examples ?
+      examples.find{|example| example.include? word} : false
   end
 end
