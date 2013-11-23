@@ -20,8 +20,8 @@ class Example
     @path = path
     @all = open(path).read
     @describes = []
-    File.foreach(path) do |line|
-      @describes << line.chomp if line =~ /.*describe.*do$/ 
+    @all.each_line do |line|
+      @describes << line.chomp if line =~ /.*describe .*do$/ 
     end
   end
 
