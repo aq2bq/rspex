@@ -25,6 +25,7 @@ describe Example do
 
   describe '#describes' do
     context "when valid path" do
+      it { expect(@example.describes).to have(2).items }
       it { expect(@example.describes.first).to eq "describe 'capybara/rspec', :type => :request do" }
     end
   end
