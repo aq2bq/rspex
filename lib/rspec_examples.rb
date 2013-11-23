@@ -15,13 +15,12 @@ end
 
 class Example
   def initialize path
-    byebug
     @path = path
-    @file = open(path)
+    @file = open(path).read
   end
 
   def all
-    @file.read
+    @file
   end
 
   def name
