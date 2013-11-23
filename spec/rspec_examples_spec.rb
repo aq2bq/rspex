@@ -29,4 +29,18 @@ describe Example do
       it { expect(@example.describes.first).to eq "describe 'capybara/rspec', :type => :request do" }
     end
   end
+
+  describe '#contexts' do
+    context "when valid path" do
+      it { expect(@example.contexts).to have(2).items }
+      it { expect(@example.contexts.first).to eq "context \"resetting session\" do" }
+    end
+  end
+
+  describe '#its' do
+    context "when valid path" do
+      it { expect(@example.its).to have(8).items }
+      it { expect(@example.its.first).to eq "it \"should include Capybara in rspec\" do" }
+    end
+  end
 end

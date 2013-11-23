@@ -14,24 +14,22 @@ end
 
 
 class Example
-  attr_reader :all, :describes
+  attr_reader :all, :describes, :contexts, :its
 
   def initialize path
     @path = path
     @all = open(path).read
     @describes = []
+    @contexts = []
+    @its = []
     @all.each_line do |line|
-      @describes << line.chomp if line =~ /.*describe .*do$/ 
+      @describes << line.chomp.strip if line =~ /.*describe .* do$/
+      @contexts << line.chomp.strip if line =~ /.*context .* do$/
+      @its << line.chomp.strip if line =~ /.*it .* do$/
     end
   end
 
   def name
     @path.match(/^.*gems\/(.*)\/spec\//)[1]
-  end
-
-  def contexts
-  end
-
-  def its
   end
 end
