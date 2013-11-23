@@ -14,13 +14,11 @@ end
 
 
 class Example
+  attr_reader :all
+
   def initialize path
     @path = path
-    @file = open(path).read
-  end
-
-  def all
-    @file
+    @all = open(path).read
   end
 
   def name
