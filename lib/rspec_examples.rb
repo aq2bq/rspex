@@ -14,7 +14,7 @@ end
 
 
 class Example
-  attr_reader :all, :describes, :contexts, :its
+  attr_reader :path, :all, :describes, :contexts, :its, :results
 
   def initialize path
     @path = path
@@ -22,6 +22,7 @@ class Example
     @describes = []
     @contexts = []
     @its = []
+    @results = []
     @all.each_line do |line|
       @describes << line.chomp.strip if line =~ /.*describe .* do$/
       @contexts << line.chomp.strip if line =~ /.*context .* do$/
@@ -35,7 +36,7 @@ class Example
 
   def match? word, type
     examples = self.instance_variable_get("@#{type}s")
-    examples ?
+    examples.any? ?
       examples.find{|example| example.include? word} : false
   end
 end
