@@ -1,3 +1,3 @@
-module Rexample
+module RSpex
   VERSION = "0.0.1"
 end

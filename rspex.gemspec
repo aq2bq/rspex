@@ -1,11 +1,11 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'rexample/version'
+require 'rspex/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "rexample"
-  spec.version       = Rexample::VERSION
+  spec.name          = "rspex"
+  spec.version       = RSpex::VERSION
   spec.authors       = ["aq2bq"]
   spec.email         = ["pememo@gmail.com"]
   spec.description   = %q{TODO: Write a gem description}

@@ -1,8 +1,8 @@
-require "rexample"
+require "rspex"
 require 'thor'
 require 'rspec_examples'
 
-module Rexample
+module RSpex
   class CLI < Thor
     desc "it WORD", "show result."
     def it(word)
