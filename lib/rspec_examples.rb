@@ -19,14 +19,13 @@ class Example
   def initialize path
     @path = path
     @all = open(path).read
-    @describes = []
-    @contexts = []
-    @its = []
+    types = %w(describe context it)
+    types.each{|type| self.instance_variable_set("@#{type}s",[])}
     @results = []
     @all.each_line do |line|
-      @describes << line.chomp.strip if line =~ /.*describe .* do$/
-      @contexts << line.chomp.strip if line =~ /.*context .* do$/
-      @its << line.chomp.strip if line =~ /.*it .* do$/
+      types.each do |type|
+        self.instance_variable_get("@#{type}s") << line.chomp.strip if line =~ /.*#{type} .* do$/
+      end
     end
   end
 
