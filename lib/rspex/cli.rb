@@ -23,7 +23,7 @@ module RSpex
     def search word, type
       RSpecExamples.new.search(word, type).each do |example|
         say("[#{example.path}]", :green)
-        example.instance_variable_get("@#{type}s").each {|str|say(str, :yellow) if str.include? word}
+        example.results.each{|result| say(result, :yellow)}
       end
     end
   end

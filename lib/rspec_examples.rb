@@ -8,7 +8,7 @@ class RSpecExamples
   end
 
   def search word, type
-    @examples.select{|example| example.match? word, type }
+    @examples.select{|example| example.matches word, type }
   end
 end
 
@@ -34,9 +34,11 @@ class Example
     @path.match(/^.*gems\/(.*)\/spec\//)[1]
   end
 
-  def match? word, type
+  def matches word, type
     examples = self.instance_variable_get("@#{type}s")
-    examples.any? ?
-      examples.find{|example| example.include? word} : false
+    if examples.any?
+      @results = examples.select{|example| example.include? word}
+    end
+    @results.any? ? @results : false
   end
 end
