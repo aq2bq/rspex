@@ -4,16 +4,18 @@ describe RSpecExamples do
   before do
     @rspec_examples = RSpecExamples.new
   end
-  let(:word) { 'valid' }
+
+  let(:word) { 'reset' }
   let(:type) { 'context' }
 
   describe '#search' do
     before do
-      @results = @rspec_examples.search(word, type)
+      @search = @rspec_examples.search(word, type)
     end
     
     context "when valid arguments" do
-      it { expect(@results.first.name).to eq "capybara-webkit-1.0.0" }
+      it { expect(@search.first.name).to eq "capybara-1.0.1" }
+      it { expect(@search.first.results).to eq ["context \"resetting session\" do"] }
     end
   end
 end
@@ -54,6 +56,17 @@ describe Example do
     context "when valid path" do
       it { expect(@example.its).to have(8).items }
       it { expect(@example.its.first).to eq "it \"should include Capybara in rspec\" do" }
+    end
+  end
+
+  describe '#matches' do
+    context "when valid path" do
+      before do
+        @example.matches(word, type)
+      end
+      let(:word) { 'reset' }
+      let(:type) { 'context' }
+      it { expect(@example.results).to eq ["context \"resetting session\" do"] }
     end
   end
 end
