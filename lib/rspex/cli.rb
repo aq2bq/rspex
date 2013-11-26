@@ -26,10 +26,10 @@ module RSpex
       results = examples.search(word, type)
       results.each do |example|
         say("\n[#{example.path}]", :on_blue)
-        example.results.each{|result| say(result, :green)}
+        example.results.each{|result| say(result, :on_black)}
         i += example.results.size
       end
-      say("\nfound #{i} example(s) on #{results.size}/#{examples.size} spec(s)", :red)
+      say("\nfound #{i} example(s) on #{results.size}/#{examples.size} spec(s)", :on_red)
     end
   end
 end
