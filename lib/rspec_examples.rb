@@ -20,6 +20,7 @@ class Example
   attr_reader :path, :all, :describes, :contexts, :its, :results
 
   def initialize path
+    raise ('argument must be path to spec file') unless valid?(path)
     @path = path
     @all = open(path).read
     @results = []
@@ -47,5 +48,9 @@ class Example
   private
   def examples(type)
     self.instance_variable_get("@#{type}s")
+  end
+
+  def valid?(path)
+    Pathname.new(path).exist? and path.include?('spec.rb')
   end
 end

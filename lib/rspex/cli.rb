@@ -1,7 +1,6 @@
 require "rspex"
 require 'thor'
 
-
 module RSpex
   class CLI < Thor
     desc "it 'keyword'", "search keyword from 'it' sentence."

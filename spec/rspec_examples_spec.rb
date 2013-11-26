@@ -48,7 +48,7 @@ describe Example do
       it { expect(@example.name).to eq 'fakegem-1.0.0' }
     end
     context "with an invalid path" do
-      
+      it { expect{Example.new('x')}.to raise_error('argument must be path to spec file') }
     end
   end
 
