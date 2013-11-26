@@ -16,9 +16,3 @@ describe Fake do
   end
 end
 
-feature "Feature Fake" do
-  scenario "is pulled in" do
-    visit('/foo')
-    page.body.should include('Another World')
-  end
-end
