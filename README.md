@@ -6,16 +6,6 @@ Learn how to writing spec in English from local gem's spec-files
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
-    gem 'rspex'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
     $ gem install rspex
 
 ## Usage
