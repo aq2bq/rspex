@@ -6,11 +6,11 @@ require 'rspex/version'
 Gem::Specification.new do |spec|
   spec.name          = "rspex"
   spec.version       = RSpex::VERSION
-  spec.authors       = ["@aq2bq"]
+  spec.authors       = ["Daisuke Terada","@aq2bq"]
   spec.email         = ["terada@yukashikado.co.jp"]
   spec.description   = %q{Learn how to writing spec in English from local gem's spec-files}
   spec.summary       = %q{Learn how to writing spec in English from local gem's spec-files}
-  spec.homepage      = "https://twitter.com/aq2bq"
+  spec.homepage      = "https://github.com/aq2bq/rspex"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
