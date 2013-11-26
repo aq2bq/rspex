@@ -1,5 +1,5 @@
 class RSpecExamples
-  SPEC_PATH = "#{Gem.path[0]}/gems/*/spec/*_spec.rb"
+  SPEC_PATH = "#{Gem.path[0]}/gems/*/spec/**/*_spec.rb"
   attr_reader :size
 
   def initialize(spec_path=SPEC_PATH)
@@ -33,10 +33,6 @@ class Example
     end
   end
 
-  def examples(type)
-    self.instance_variable_get("@#{type}s")
-  end
-
   def name
     @path.match(/^.*gems\/(.*)\/spec\//)[1]
   end
@@ -46,5 +42,10 @@ class Example
       @results = examples(type).select{|example| example.include? word}
     end
     @results.any? ? @results : false
+  end
+
+  private
+  def examples(type)
+    self.instance_variable_get("@#{type}s")
   end
 end

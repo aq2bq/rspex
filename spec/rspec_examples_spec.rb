@@ -2,7 +2,7 @@ require 'rspec_examples'
 
 describe RSpecExamples do
   before do
-    @rspec_examples = RSpecExamples.new("fake/gems/*/spec/*_spec.rb")
+    @rspec_examples = RSpecExamples.new("fake/gems/*/spec/**/*_spec.rb")
   end
 
   let(:word) { 'valid' }
