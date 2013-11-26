@@ -65,6 +65,6 @@ DEPENDENCIES
   guard-rspec
   pry-byebug
   rake
-  rspex!
   rspec
+  rspex!
   terminal-notifier-guard
