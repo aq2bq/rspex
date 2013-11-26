@@ -53,13 +53,21 @@ describe Example do
   end
 
   describe '#matches' do
-    context "with a valid path" do
-      before do
-        @example.matches(word, type)
-      end
+    before do
+      @matches = @example.matches(word, type)
+    end
+    let(:type) { 'context' }
+
+    context "Success in match the word" do
       let(:word) { 'valid' }
-      let(:type) { 'context' }
+      it { expect(@matches).to have(2).items }
       it { expect(@example.results).to eq ["context \"when params are valid\" do", "context \"when params are invalid\" do"] }
+    end
+    
+    context "Fail in match the word" do
+      let(:word) { 'xxx' }
+      it { expect(@matches).to be_false }
+      it { expect(@example.results).to be_empty }
     end
   end
 end
