@@ -1,6 +1,6 @@
 # RSpex
 
-TODO: Write a gem description
+Learn how to writing spec in English from local gem's spec-files
 
 ## Installation
 
@@ -18,7 +18,25 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+### search from 'it' sentence
+
+    $ rspex it 'keyword'
+
+
+### search from 'context' sentence
+
+    $ rspex context 'keyword'
+
+
+### search from 'describe' sentence
+
+    $ rspex describe 'keyword'
+
+
+## TODO
+
+- Must be Improve performance (It takes 15sec with loading 2500 spec files )
+- Make to configurable
 
 ## Contributing
 
