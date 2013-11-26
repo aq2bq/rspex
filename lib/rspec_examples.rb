@@ -1,7 +1,6 @@
-require 'pry-byebug'
-
 class RSpecExamples
   SPEC_PATH = "#{Gem.path[0]}/gems/*/spec/*_spec.rb"
+  attr_reader :size
 
   def initialize(spec_path=SPEC_PATH)
     @examples = Dir.glob(spec_path).map{|path| Example.new(path)}
@@ -9,6 +8,10 @@ class RSpecExamples
 
   def search word, type
     @examples.select{|example| example.matches word, type }
+  end
+
+  def size
+    @examples.size
   end
 end
 
