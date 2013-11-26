@@ -3,8 +3,8 @@ require 'pry-byebug'
 class RSpecExamples
   SPEC_PATH = "#{Gem.path[0]}/gems/*/spec/*_spec.rb"
 
-  def initialize(path=SPEC_PATH)
-    @examples = Dir.glob(SPEC_PATH).map{|path| Example.new(path)}
+  def initialize(spec_path=SPEC_PATH)
+    @examples = Dir.glob(spec_path).map{|path| Example.new(path)}
   end
 
   def search word, type
