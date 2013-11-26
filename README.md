@@ -1,6 +1,8 @@
 # RSpex
 
-Learn how to writing spec in English from local gem's spec-files
+Learn how to writing spec in English from local gem's spec-files  
+
+![](https://dl.dropboxusercontent.com/u/10198795/rspex_screenshot.png)
 
 ## Installation
 
@@ -35,8 +37,9 @@ Or install it yourself as:
 
 ## TODO
 
-- Must be Improve performance (It takes 15sec with loading 2500 spec files )
-- Make to configurable
+1. Must be Improve performance (It takes 15sec with loading 2500 spec files! )
+2. Make to configurable
+3. Use Regular Expression
 
 ## Contributing
 
