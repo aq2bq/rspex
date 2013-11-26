@@ -1,6 +1,5 @@
 require 'spec_helper'
 
-
 describe Fake do
   describe '.create' do
     context "when params are valid" do

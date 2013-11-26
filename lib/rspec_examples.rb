@@ -1,6 +1,6 @@
 class RSpecExamples
   SPEC_PATH = "#{Gem.path[0]}/gems/*/spec/**/*_spec.rb"
-  attr_reader :size
+  attr_reader :examples, :size
 
   def initialize(spec_path=SPEC_PATH)
     @examples = Dir.glob(spec_path).map{|path| Example.new(path)}
