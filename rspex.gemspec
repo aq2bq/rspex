@@ -7,9 +7,9 @@ Gem::Specification.new do |spec|
   spec.name          = "rspex"
   spec.version       = RSpex::VERSION
   spec.authors       = ["aq2bq"]
-  spec.email         = ["pememo@gmail.com"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
+  spec.email         = ["terada@yukashikado.co.jp"]
+  spec.description   = %q{Learn how to writing spec in English from local gem's spec-files}
+  spec.summary       = %q{Learn how to writing spec in English from local gem's spec-files}
   spec.homepage      = ""
   spec.license       = "MIT"
 
