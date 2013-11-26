@@ -3,7 +3,7 @@ require 'pry-byebug'
 class RSpecExamples
   SPEC_PATH = "#{Gem.path[0]}/gems/*/spec/*_spec.rb"
 
-  def initialize
+  def initialize(path=SPEC_PATH)
     @examples = Dir.glob(SPEC_PATH).map{|path| Example.new(path)}
   end
 
@@ -19,14 +19,19 @@ class Example
   def initialize path
     @path = path
     @all = open(path).read
+    @results = []
     types = %w(describe context it)
     types.each{|type| self.instance_variable_set("@#{type}s",[])}
-    @results = []
+    
     @all.each_line do |line|
       types.each do |type|
-        self.instance_variable_get("@#{type}s") << line.chomp.strip if line =~ /.*#{type} .* do$/
+        examples(type) << line.chomp.strip if line =~ /.*#{type} .* do$/
       end
     end
+  end
+
+  def examples(type)
+    self.instance_variable_get("@#{type}s")
   end
 
   def name
@@ -34,9 +39,8 @@ class Example
   end
 
   def matches word, type
-    examples = self.instance_variable_get("@#{type}s")
-    if examples.any?
-      @results = examples.select{|example| example.include? word}
+    if examples(type).any?
+      @results = examples(type).select{|example| example.include? word}
     end
     @results.any? ? @results : false
   end
