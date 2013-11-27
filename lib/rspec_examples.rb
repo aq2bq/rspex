@@ -1,7 +1,7 @@
 require 'pathname'
 
 class RSpecExamples
-  SPEC_PATH = "#{Gem.path[1]}/gems/*/spec/**/*_spec.rb"
+  SPEC_PATH = "#{Gem.default_dir}/gems/*/spec/**/*_spec.rb"
   attr_reader :examples, :size
 
   def initialize(spec_path=SPEC_PATH)
