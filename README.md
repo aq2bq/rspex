@@ -28,8 +28,9 @@ Learn how to writing spec in English from local gem's spec-files
 ## TODO
 
 1. Must be Improve performance (It takes 15sec with loading 2500 spec files! )
-2. Make to configurable
-3. Use Regular Expression
+2. Highlight search phrase
+3. Make to configurable
+4. Use Regular Expression
 
 ## Contributing
 
