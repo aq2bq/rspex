@@ -7,6 +7,13 @@ describe Fake do
         expect(subject).to be_true
       end
     end
+
+    context "when arguments are valid" do
+      it "returns true" do
+        expect(subject).to be_true
+      end
+    end
+    
     context "when params are invalid" do
       it "returns false" do
         expect(subject).to be_false

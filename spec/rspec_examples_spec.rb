@@ -15,7 +15,7 @@ describe RSpecExamples do
     
     context "Success in Search" do
       it { expect(@search.first.name).to eq "fakegem-1.0.0" }
-      it { expect(@search.first.results).to eq ["context \"when params are valid\" do", "context \"when params are invalid\" do"] }
+      it { expect(@search.first.results).to eq ["context \"when params are valid\" do", "context \"when arguments are valid\" do", "context \"when params are invalid\" do"] }
     end
 
     context "Fail in Search" do
@@ -33,10 +33,10 @@ describe Example do
 
   describe '#attr_reader' do
     context "with a valid path" do
-      it { expect(@example.all).to eq "require 'spec_helper'\n\ndescribe Fake do\n  describe '.create' do\n    context \"when params are valid\" do\n      it \"returns true\" do\n        expect(subject).to be_true\n      end\n    end\n    context \"when params are invalid\" do\n      it \"returns false\" do\n        expect(subject).to be_false\n      end\n    end\n  end\nend\n\n" }
+      it { expect(@example.all).to eq "require 'spec_helper'\n\ndescribe Fake do\n  describe '.create' do\n    context \"when params are valid\" do\n      it \"returns true\" do\n        expect(subject).to be_true\n      end\n    end\n\n    context \"when arguments are valid\" do\n      it \"returns true\" do\n        expect(subject).to be_true\n      end\n    end\n    \n    context \"when params are invalid\" do\n      it \"returns false\" do\n        expect(subject).to be_false\n      end\n    end\n  end\nend\n\n" }
       it { expect(@example.describes.size).to eq(2) }
       it { expect(@example.describes.first).to eq "describe Fake do" }
-      it { expect(@example.contexts.size).to eq(2) }
+      it { expect(@example.contexts.size).to eq(3) }
       it { expect(@example.contexts.first).to eq "context \"when params are valid\" do" }
       it { expect(@example.its.size).to eq(2) }
       it { expect(@example.its.first).to eq "it \"returns true\" do" }
@@ -56,18 +56,30 @@ describe Example do
     before do
       @matches = @example.matches(word, type)
     end
-    let(:type) { 'context' }
 
-    context "Success in match the word" do
-      let(:word) { 'valid' }
-      it { expect(@matches.size).to eq(2) }
-      it { expect(@example.results).to eq ["context \"when params are valid\" do", "context \"when params are invalid\" do"] }
+    context 'When search from "context" sentences' do
+      let(:type) { 'context' }
+
+      context "Success in match the word" do
+        let(:word) { 'valid' }
+        it { expect(@matches.size).to eq(3) }
+        it { expect(@example.results).to eq ["context \"when params are valid\" do", "context \"when arguments are valid\" do", "context \"when params are invalid\" do"] }
+      end
+
+      context "Fail in match the word" do
+        let(:word) { 'xxx' }
+        it { expect(@matches).to eq(false) }
+        it { expect(@example.results).to be_empty }
+      end
     end
-    
-    context "Fail in match the word" do
-      let(:word) { 'xxx' }
-      it { expect(@matches).to eq(false) }
-      it { expect(@example.results).to be_empty }
+
+    context 'When there are duplicated "it" sentences' do
+      let(:type) { 'it' }
+      let(:word) { 'true' }
+
+      it "should be ignore duplicated sentence" do
+        expect(@matches).to eq(["it \"returns true\" do"])
+      end
     end
   end
 end

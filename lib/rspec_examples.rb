@@ -31,7 +31,9 @@ class Example
     
     @all.each_line do |line|
       types.each do |type|
-        examples(type) << line.chomp.strip if line =~ /.*#{type} .* do$/
+        if line =~ /.*#{type} .* do$/
+          examples(type) << line.chomp.strip unless examples(type).include? line.chomp.strip
+        end
       end
     end
   end
