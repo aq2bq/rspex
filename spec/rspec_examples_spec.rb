@@ -34,11 +34,11 @@ describe Example do
   describe '#attr_reader' do
     context "with a valid path" do
       it { expect(@example.all).to eq "require 'spec_helper'\n\ndescribe Fake do\n  describe '.create' do\n    context \"when params are valid\" do\n      it \"returns true\" do\n        expect(subject).to be_true\n      end\n    end\n    context \"when params are invalid\" do\n      it \"returns false\" do\n        expect(subject).to be_false\n      end\n    end\n  end\nend\n\n" }
-      it { expect(@example.describes).to have(2).items }
+      it { expect(@example.describes.size).to eq(2) }
       it { expect(@example.describes.first).to eq "describe Fake do" }
-      it { expect(@example.contexts).to have(2).items }
+      it { expect(@example.contexts.size).to eq(2) }
       it { expect(@example.contexts.first).to eq "context \"when params are valid\" do" }
-      it { expect(@example.its).to have(2).items }
+      it { expect(@example.its.size).to eq(2) }
       it { expect(@example.its.first).to eq "it \"returns true\" do" }
     end
   end
@@ -60,13 +60,13 @@ describe Example do
 
     context "Success in match the word" do
       let(:word) { 'valid' }
-      it { expect(@matches).to have(2).items }
+      it { expect(@matches.size).to eq(2) }
       it { expect(@example.results).to eq ["context \"when params are valid\" do", "context \"when params are invalid\" do"] }
     end
     
     context "Fail in match the word" do
       let(:word) { 'xxx' }
-      it { expect(@matches).to be_false }
+      it { expect(@matches).to eq(false) }
       it { expect(@example.results).to be_empty }
     end
   end
