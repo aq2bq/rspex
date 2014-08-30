@@ -33,7 +33,6 @@ describe Example do
 
   describe '#attr_reader' do
     context "with a valid path" do
-      it { expect(@example.all).to eq "require 'spec_helper'\n\ndescribe Fake do\n  describe '.create' do\n    context \"when params are valid\" do\n      it \"returns true\" do\n        expect(subject).to be_true\n      end\n    end\n\n    context \"when arguments are valid\" do\n      it \"returns true\" do\n        expect(subject).to be_true\n      end\n    end\n    \n    context \"when params are invalid\" do\n      it \"returns false\" do\n        expect(subject).to be_false\n      end\n    end\n  end\nend\n\n" }
       it { expect(@example.describes.size).to eq(2) }
       it { expect(@example.describes.first).to eq "describe Fake do" }
       it { expect(@example.contexts.size).to eq(3) }

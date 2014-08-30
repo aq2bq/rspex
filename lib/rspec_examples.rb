@@ -19,27 +19,23 @@ end
 
 
 class Example
-  attr_reader :path, :all, :describes, :contexts, :its, :results
+  attr_reader :path, :name, :describes, :contexts, :its, :results
 
   def initialize path
     raise ('argument must be path to spec file') unless valid?(path)
     @path = path
-    @all = open(path).read
+    @name = path.match(/^.*gems\/(.*)\/spec\//)[1]
     @results = []
     types = %w(describe context it)
     types.each{|type| self.instance_variable_set("@#{type}s",[])}
     
-    @all.each_line do |line|
+    open(path).read.each_line do |line|
       types.each do |type|
         if line =~ /.*#{type} .* do$/
-          examples(type) << line.chomp.strip unless examples(type).include? line.chomp.strip
+          set_example type, line.chomp.strip
         end
       end
     end
-  end
-
-  def name
-    @path.match(/^.*gems\/(.*)\/spec\//)[1]
   end
 
   def matches word, type
@@ -56,5 +52,9 @@ class Example
 
   def valid?(path)
     Pathname.new(path).exist? and path.include?('spec.rb')
+  end
+
+  def set_example type, sentence
+    examples(type) << sentence unless examples(type).include? sentence
   end
 end
