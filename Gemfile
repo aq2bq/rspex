@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rspec'
+gem 'rspec', '>= 3'
 gem 'guard-rspec'
 gem 'terminal-notifier-guard'
 gem 'pry-byebug'
